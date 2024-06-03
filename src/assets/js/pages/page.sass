@@ -1,0 +1,48 @@
+@import '../sass/global'
+    
+.page
+    //width: 100%
+    display: flex
+    flex-direction: column
+    padding: 25px 20px 20px 50px
+    & h1 
+        margin: 0
+        font-weight: 600
+    &__title
+        margin: 0 0 40px 0
+        &-firstName
+            color: $primary-color
+    &__content
+        display: flex
+    &__left
+        width: 70%
+    &__right
+        width: 21%
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        margin-left: 40px
+    &__activity
+        height: 300px
+        background-color: $secondary-color
+        border-radius: 10px
+    &__list
+        margin-top: 25px
+        display: flex
+        justify-content: space-between
+    &__line
+        height: 310px
+        width: 32%
+        background-color: $primary-color
+        border-radius: 10px
+    &__radar
+        width: 32%
+        height: 310px
+        background-color: #282D30
+        border-radius: 10px
+    &__radial
+        width: 32%
+        height: 310px
+        background-color: $secondary-color
+        border-radius: 10px
+        position: relative
