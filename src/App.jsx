@@ -1,16 +1,13 @@
 import { useState } from 'react'
 import './App.sass'
-import Layout from './assets/js/layout/Layout'
+import Router from './assets/js/routes/Router'
 
 
 function App() {
   
-
   return (
     <>
-        <Layout/>
-        
-        
+        <Router/>
     </>
   )
 }

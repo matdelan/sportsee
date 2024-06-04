@@ -6,7 +6,7 @@ export const mock_data_user=
             lastName: 'Dovineau',
             age: 31,
         },
-        todayScore: 0.90,
+        todayScore: 0.12,
         keyData: {
             calorieCount: 1930,
             proteinCount: 155,

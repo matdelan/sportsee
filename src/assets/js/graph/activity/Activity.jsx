@@ -14,9 +14,10 @@ import CustomToolTip from "./CustomToolTip.jsx"
 import './activity.sass'
 import {mock_data_activity} from '../../mocks/activity.js'
 
-export default function Activity() {
+export default function Activity({sessions}) {
 
-  const dataSessions = mock_data_activity.sessions
+  //const dataSessions = mock_data_activity.sessions
+  const dataSessions = sessions
 
   return (
     <>

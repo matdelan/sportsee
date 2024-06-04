@@ -8,9 +8,11 @@ import {
   } from "recharts";
   import {mock_data_performance} from '../../mocks/performance.js'
   
-  export default function RadarGraph() {
+  export default function RadarGraph({data}) {
 
-    const data = mock_data_performance.data
+    //const dataImport = mock_data_performance.data
+    const dataImport = data
+
 
     const kindResult = {
       1: 'Cardio',
@@ -22,7 +24,7 @@ import {
     }
 
     const order = ['Intensité','Vitesse','Force','Endurance','Energie','Cardio']
-    const dataResult = data.map(({value, kind}) =>  ({
+    const dataResult = dataImport.map(({value, kind}) =>  ({
       value,
       kind : kindResult[kind]
     }))

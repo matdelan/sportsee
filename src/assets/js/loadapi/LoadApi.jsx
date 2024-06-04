@@ -18,8 +18,5 @@ export default function LoadApi(url) {
         fetchURL(url) 
     }, [url])
     
-    
     return { apiData }
-
-
 }

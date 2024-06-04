@@ -13,7 +13,7 @@ import './lineGraph.sass'
 import {mock_data_sessions} from '../../mocks/average_sessions.js'
 import CustomToolTip from "./CustomToolTip.jsx";
   
-export default function LineGraph() {
+export default function LineGraph({ average }) {
   const jour = (value) => {
 		if (value === 1) return 'L'
 		if (value === 2) return 'M'
@@ -24,6 +24,9 @@ export default function LineGraph() {
 		if (value === 7) return 'D'
 	}
 
+  //const dataSessions = mock_data_sessions.sessions
+  const dataSessions = average
+
   return (
     <>
       <h3 className="lineGraph__title">
@@ -31,7 +34,7 @@ export default function LineGraph() {
             sessions
       </h3>
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart width={500} height={300} data={mock_data_sessions.sessions} margin={{top: 100, right: 0, left: 0, bottom: 30,}}>
+        <LineChart width={500} height={300} data={dataSessions} margin={{top: 100, right: 0, left: 0, bottom: 30,}}>
           <XAxis 
             dataKey="day" 
             padding={{ left: 10, right: 10 }} 
