@@ -13,7 +13,6 @@ import {
     //const dataImport = mock_data_performance.data
     const dataImport = data
 
-
     const kindResult = {
       1: 'Cardio',
       2: 'Energie',
