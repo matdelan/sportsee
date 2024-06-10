@@ -21,13 +21,13 @@ import {  Await, useLoaderData} from 'react-router-dom'
 */
 export default function Profil() {
     //const name = mock_data_user.userInfos.firstName
-    const todayScore = mock_data_user.todayScore
+    //const todayScore = mock_data_user.todayScore
 
     const { profilData } = useLoaderData()
     const { activityData } = useLoaderData()
     const { averageData } = useLoaderData()
     const { performanceData } = useLoaderData()
-    const name = profilData.userInfos.firstName
+
     return <>
     <div className="page">
         <Await resolve={profilData}>
