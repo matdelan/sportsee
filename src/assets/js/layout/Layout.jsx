@@ -3,6 +3,11 @@ import Aside from '../components/aside/Aside'
 import './layout.sass'
 import { Outlet } from 'react-router-dom'
 
+/*
+* Render layout page between React router dom page
+* @component
+* @returns { React.Component }
+*/
 export default function Layout() {
     return <>
     <div className="profil">

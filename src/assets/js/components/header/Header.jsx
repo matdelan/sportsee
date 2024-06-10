@@ -1,6 +1,11 @@
 import "./header.sass"
 import logoSportSee from '/logo.svg'
 
+/*
+* Render Header : logo and navbar
+* @component
+* @returns { React.Component } 
+*/
 function Header() {
 
     return <>

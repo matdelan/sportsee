@@ -1,5 +1,10 @@
 import {useState, useEffect} from 'react'
 
+/*
+* Return loading data
+* @param {sting} url - url of api to load
+* @returns { Object }
+*/
 export default function LoadApi(url) {
 
     const [apiData, setApiData] = useState(null)

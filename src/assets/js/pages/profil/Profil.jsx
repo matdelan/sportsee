@@ -13,19 +13,21 @@ import icon_glucides from '/icon_glucides.svg'
 import icon_lipides from '/icon_lipides.svg'
 import Tags from "../../components/tags/Tags.jsx"
 import {  Await, useLoaderData} from 'react-router-dom'
-import { Suspense } from "react"
 
-
+/*
+* Render activity graph of the user profil page
+* @component
+* @returns { React.Component }
+*/
 export default function Profil() {
-    const name = mock_data_user.userInfos.firstName
+    //const name = mock_data_user.userInfos.firstName
     const todayScore = mock_data_user.todayScore
-    //const user = LoadApi("http://localhost:3000/user/12")
 
     const { profilData } = useLoaderData()
     const { activityData } = useLoaderData()
     const { averageData } = useLoaderData()
     const { performanceData } = useLoaderData()
-    //const name = profilData.userInfos.firstName
+    const name = profilData.userInfos.firstName
     return <>
     <div className="page">
         <Await resolve={profilData}>

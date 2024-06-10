@@ -1,3 +1,9 @@
+/*
+* Render line graph bartchart
+- @param {Object} sessions - data from api
+* @component
+* @returns { React.Component }
+*/
 export default function CustomToolTip({ active, payload }) {
     if (active)
         return (

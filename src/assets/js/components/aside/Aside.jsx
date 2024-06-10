@@ -5,6 +5,11 @@ import icon_bike from '/icon_bike.svg'
 import icon_alter from '/icon_alter.svg'
 import Footer from '../footer/Footer'
 
+/*
+* Render aside 4 icons
+* @component
+* @returns { React.Component }
+*/
 export default function Aside(){
 
     return <>

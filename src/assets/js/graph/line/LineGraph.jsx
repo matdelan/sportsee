@@ -13,6 +13,12 @@ import './lineGraph.sass'
 import {mock_data_sessions} from '../../mocks/average_sessions.js'
 import CustomToolTip from "./CustomToolTip.jsx";
   
+/*
+* Render line graph activity of the user
+* @param {Object} average - data for api
+* @component
+* @returns { React.Component }
+*/
 export default function LineGraph({ average }) {
   const jour = (value) => {
 		if (value === 1) return 'L'

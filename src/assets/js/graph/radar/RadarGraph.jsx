@@ -8,9 +8,14 @@ import {
   } from "recharts";
   import {mock_data_performance} from '../../mocks/performance.js'
   
+/*
+* Render activity tooltip when cursor ar on a data
+* @param {Object} data - data for api
+* @component
+* @returns { React.Component }
+*/
   export default function RadarGraph({data}) {
 
-    //const dataImport = mock_data_performance.data
     const dataImport = data
 
     const kindResult = {

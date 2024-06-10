@@ -3,6 +3,11 @@ import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
 import './pageError.sass'
 
+/*
+* Render page error
+* @component
+* @returns { React.Component }
+*/
 export default function PageError() {
     const error = useRouteError()
     return <>

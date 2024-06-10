@@ -1,10 +1,9 @@
 import { RouterProvider, createBrowserRouter , defer} from 'react-router-dom'
 import PageError from '../pages/pageerror/PageError'
 import Profil from '../pages/profil/Profil'
-//import About from '../pages/about/About'
-//import PageRental from '../pages/pagerental/PageRental'
 import './routes.sass'
 import Layout from '../layout/Layout'
+
 
 const router = createBrowserRouter([
   {
@@ -28,6 +27,11 @@ const router = createBrowserRouter([
   }
 ])
 
+/*
+* Render page actually display
+* @component
+* @returns { React.Component }
+*/
 function Router() {
   return <RouterProvider router={router}/>
 }

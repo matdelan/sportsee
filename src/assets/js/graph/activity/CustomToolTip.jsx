@@ -1,3 +1,10 @@
+/*
+* Render activity tooltip when cursor ar on a data
+* @param {Object} active - on hover a cell
+* @param {Object} payload - data in use
+* @component
+* @returns { React.Component }
+*/
 export default function CustomToolTip({ active, payload }) {
     if (active)
         return (

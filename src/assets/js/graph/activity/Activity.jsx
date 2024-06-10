@@ -6,14 +6,18 @@ import {
     CartesianGrid,
     Tooltip,
     Legend,
-    Label,
-    Text,
     ResponsiveContainer,
   } from "recharts"
 import CustomToolTip from "./CustomToolTip.jsx"
 import './activity.sass'
 import {mock_data_activity} from '../../mocks/activity.js'
 
+/*
+* Render activity bartchart
+* @param {Object} sessions - data from api
+* @component
+* @returns { React.Component }
+*/
 export default function Activity({sessions}) {
 
   //const dataSessions = mock_data_activity.sessions

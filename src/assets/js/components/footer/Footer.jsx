@@ -1,6 +1,10 @@
 import "./footer.sass"
 
-
+/*
+* Render Footer
+* @component
+* @returns { React.Component }
+*/
 export default function Footer() {
 
     return <>
