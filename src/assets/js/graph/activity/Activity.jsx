@@ -11,6 +11,7 @@ import {
 import CustomToolTip from "./CustomToolTip.jsx"
 import './activity.sass'
 import {mock_data_activity} from '../../mocks/activity.js'
+import useFetchData from "../../useFetchData/useFetchData.jsx"
 
 /*
 * Render activity bartchart
@@ -18,10 +19,23 @@ import {mock_data_activity} from '../../mocks/activity.js'
 * @component
 * @returns { React.Component }
 */
-export default function Activity({sessions}) {
+export default function Activity({id}) {
 
   //const dataSessions = mock_data_activity.sessions
-  const dataSessions = sessions
+  //const dataSessions = sessions
+  let dataSessions = null
+  const { data, loading, error } = useFetchData("http://localhost:3000/user/12/activity")
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    //return <div>Error: {error.message}</div>;
+    dataSessions = data.mock_data_activity.sessions
+  }
+
+  dataSessions = data.data.sessions
 
   return (
     <>
@@ -68,4 +82,5 @@ export default function Activity({sessions}) {
       </ResponsiveContainer>
     </>
   );
+  
 }

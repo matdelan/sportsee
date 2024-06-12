@@ -5,7 +5,7 @@ import {mock_data_user} from '../../mocks/user.js'
 import LineGraph from "../../graph/line/LineGraph.jsx"
 import RadarGraph from "../../graph/radar/RadarGraph.jsx"
 import RadialGraph from "../../graph/radial/RadialGraph.jsx"
-import LoadApi from "../../loadapi/LoadApi.jsx"
+import LoadApi from "../../useFetchData/useFetchData.jsx"
 
 import icon_calories from '/icon_calories.svg'
 import icon_proteines from '/icon_proteines.svg'
@@ -45,13 +45,7 @@ export default function Profil() {
     <div className="page__content">
                 <div className="page__left">
                     <div className="page__activity">
-                            <Await resolve={activityData}>
-                                {
-                                    (activityData) =>
-                                        <Activity sessions={activityData.data.sessions}/>
-                                }
-                                
-                            </Await> 
+                        <Activity />  
                     </div>
                     <div className="page__list">
                         <div className="page__line">
