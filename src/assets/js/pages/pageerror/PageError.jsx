@@ -1,6 +1,5 @@
 import {useRouteError} from 'react-router-dom'
 import Header from '../../components/header/Header'
-import Footer from '../../components/footer/Footer'
 import './pageError.sass'
 
 /*
@@ -18,6 +17,5 @@ export default function PageError() {
             <p className='pe__content'>{error?.error?.toString() ?? error?.toString()}</p>
             <a href="/" className='pe__link'>Retourner sur la page d’accueil</a>
         </div>
-        <Footer/>
     </>
 }
