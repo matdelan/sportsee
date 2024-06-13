@@ -12,14 +12,17 @@ import {
 import './lineGraph.sass'  
 import {mock_data_sessions} from '../../mocks/average_sessions.js'
 import CustomToolTip from "./CustomToolTip.jsx";
+import useFetchData from "../../useFetchData/useFetchData.jsx";
   
 /*
 * Render line graph activity of the user
-* @param {Object} average - data for api
+* @param {integer} id - user id
 * @component
 * @returns { React.Component }
 */
-export default function LineGraph({ average }) {
+export default function LineGraph({ id }) {
+
+
   const jour = (value) => {
 		if (value === 1) return 'L'
 		if (value === 2) return 'M'
@@ -29,18 +32,18 @@ export default function LineGraph({ average }) {
 		if (value === 6) return 'S'
 		if (value === 7) return 'D'
 	}
+  const url = `http://localhost:3000/user/${id}/average-sessions`
 
-  //const dataSessions = mock_data_sessions.sessions
-  const dataSessions = average
+  const { data, loading, error } = useFetchData(url);
 
-  return (
+  const renderChart = (sessions) => (
     <>
       <h3 className="lineGraph__title">
             Durée moyenne des<br/>
             sessions
       </h3>
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart width={500} height={300} data={dataSessions} margin={{top: 100, right: 0, left: 0, bottom: 30,}}>
+        <LineChart width={500} height={300} data={sessions} margin={{top: 100, right: 0, left: 0, bottom: 30,}}>
           <XAxis 
             dataKey="day" 
             padding={{ left: 10, right: 10 }} 
@@ -61,6 +64,16 @@ export default function LineGraph({ average }) {
           />
         </LineChart>
       </ResponsiveContainer>
+    
     </>
-  );
+  )
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  const sessions = error ? mock_data_sessions.sessions : data.data.sessions;
+
+  return renderChart(sessions);
+  
 }

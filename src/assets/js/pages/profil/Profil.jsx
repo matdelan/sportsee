@@ -13,6 +13,7 @@ import icon_glucides from '/icon_glucides.svg'
 import icon_lipides from '/icon_lipides.svg'
 import Tags from "../../components/tags/Tags.jsx"
 import {  Await, useLoaderData} from 'react-router-dom'
+import useFetchData from "../../useFetchData/useFetchData.jsx"
 
 /*
 * Render activity graph of the user profil page
@@ -20,84 +21,84 @@ import {  Await, useLoaderData} from 'react-router-dom'
 * @returns { React.Component }
 */
 export default function Profil() {
-    //const name = mock_data_user.userInfos.firstName
-    //const todayScore = mock_data_user.todayScore
+    const userId = "12"
 
-    const { profilData } = useLoaderData()
-    const { activityData } = useLoaderData()
-    const { averageData } = useLoaderData()
-    const { performanceData } = useLoaderData()
+    const url = `http://localhost:3000/user/${userId}`
 
-    return <>
-    <div className="page">
-        <Await resolve={profilData}>
-            
-            { (profilData) => 
-                
-                <div className="page__title">
-                    <h1>Bonjour <span className="page__title-firstName">{profilData.data.userInfos.firstName}</span></h1>
-                    <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
-                </div>
+    const { data, loading, error } = useFetchData(url);
 
-            }
-        </Await>
-
-    <div className="page__content">
-                <div className="page__left">
-                    <div className="page__activity">
-                        <Activity />  
+    const renderChart = (user) => (
+        <>
+        <div className="page">
+            <div className="page__title">
+                <h1>Bonjour <span className="page__title-firstName">{user.userInfos.firstName}</span></h1>
+                <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
+            </div>
+        <div className="page__content">
+                    <div className="page__left">
+                        <div className="page__activity">
+                            <Activity id={userId} />  
+                        </div>
+                        <div className="page__list">
+                            <div className="page__line">
+                                <LineGraph id={userId}/>
+                            </div>
+                            <div className="page__radar">
+                                <RadarGraph id={userId}/>
+                            </div>
+                            <div className="page__radial">
+                                <RadialGraph id={userId}/>
+                            </div>
+                        </div>
+                        
                     </div>
-                    <div className="page__list">
-                        <div className="page__line">
-                                <Await resolve={averageData}>
-                                {
-                                    (averageData) =>
-                                        <LineGraph average={averageData.data.sessions}/>
-                                }
-                                
-                                </Await>
-                        </div>
-                        <div className="page__radar">
-                                <Await resolve={performanceData}>
-                                    {
-                                        (performanceData) =>
-                                            <RadarGraph data={performanceData.data.data}/>
-                                    }
-                                    
-                                </Await>
-                            
-                        </div>
-                        <div className="page__radial">
-                                <Await resolve={profilData}>
-                                    {
-                                        (profilData) =>
-                                            <RadialGraph value={profilData.data.todayScore}/>
-                                    }
-                                    
-                                </Await>
-                            
-                        </div>
+                    <div className="page__right">
+                        <Tags  userKeyData={user.keyData.calorieCount} unit="KCal" subtitle="Calorie" logo={icon_calories}/>
+                        <Tags  userKeyData={user.keyData.proteinCount} unit="g" subtitle="Proteines" logo={icon_proteines}/>
+                        <Tags  userKeyData={user.keyData.carbohydrateCount} unit="g" subtitle="Glucides" logo={icon_glucides}/>
+                        <Tags  userKeyData={user.keyData.lipidCount} unit="g" subtitle="Lipides" logo={icon_lipides}/>
                     </div>
-                    
                 </div>
-                <div className="page__right">
-                            <Await resolve={profilData}>
-                                {
-                                    (profilData) =>
-                                        <>
-                                            <Tags  userKeyData={profilData.data.keyData.calorieCount} unit="KCal" subtitle="Calorie" logo={icon_calories}/>
-                                            <Tags  userKeyData={profilData.data.keyData.proteinCount} unit="g" subtitle="Proteines" logo={icon_proteines}/>
-                                            <Tags  userKeyData={profilData.data.keyData.carbohydrateCount} unit="g" subtitle="Glucides" logo={icon_glucides}/>
-                                            <Tags  userKeyData={profilData.data.keyData.lipidCount} unit="g" subtitle="Lipides" logo={icon_lipides}/>
-                                        </>
-                                        
-                                }
-                            </Await>
-                    
-                </div>
+
+        </div>
+    </>
+    )
+
+    if (loading) {
+        return <>
+        <div className="page">
+        
+            <div className="page__title">
+                Loading ...
             </div>
 
-    </div>
-    </>
+            <div className="page__content">
+                    <div className="page__left">
+                        <div className="page__activity">
+                            <Activity id={userId} />  
+                        </div>
+                        <div className="page__list">
+                            <div className="page__line">
+                                <LineGraph id={userId}/>
+                            </div>
+                            <div className="page__radar">
+                                <RadarGraph id={userId}/>
+                            </div>
+                            <div className="page__radial">
+                                <RadialGraph id={userId}/>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+        </div>
+        
+        </>
+    }
+
+    const user = error ? mock_data_user : data.data;
+    
+    return renderChart(user);
 
 }

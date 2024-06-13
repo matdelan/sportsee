@@ -1,25 +1,30 @@
 import { PieChart, Pie, ResponsiveContainer } from "recharts";
 import './radialGraph.sass'
+import useFetchData from "../../useFetchData/useFetchData";
+import {mock_data_user} from '../../mocks/user.js'
 
-const data = [
+const dataGraph = [
   { name: "", value: 0.1 },
 
 ];
 
 /*
 * Render activity tooltip when cursor ar on a data
-* @param {Object} value - data from api pourcent activity
+* @param {integer} id - user id
 * @component
 * @returns { React.Component }
 */
-export default function RadialGraph({value}) {
-    const pourcent = value * 100
-    const angle =  (value * 360) + 90
-  return (
-    <ResponsiveContainer className="radial__box" width="100%" height="100%">
+export default function RadialGraph({ id }) {
+  
+    const url = `http://localhost:3000/user/${id}`
+
+    const { data, loading, error } = useFetchData(url);
+
+    const renderChart = (angle, pourcent) => (
+      <ResponsiveContainer className="radial__box" width="100%" height="100%">
       <PieChart className="radial__pie" width={400} height={400}>
         <Pie
-          data={data}
+          data={dataGraph}
           cx={160}
           cy={150}
           innerRadius={110}
@@ -39,6 +44,19 @@ export default function RadialGraph({value}) {
       <div className="radial__title">
         Score
       </div>
-    </ResponsiveContainer>
-  );
+      </ResponsiveContainer>
+    )
+  
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+
+  
+  const value = error ? mock_data_user.todayScore : data.data.todayScore;
+
+  
+  const pourcent = value * 100
+  const angle =  (value * 360) + 90
+
+  return renderChart(angle, pourcent)
 }
